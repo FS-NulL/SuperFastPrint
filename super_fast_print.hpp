@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <type_traits>
+#include <limits>
 
 namespace SuperFastPrint
 {
@@ -38,7 +39,7 @@ namespace SuperFastPrint
             {
                 *current = 0; // Terminate string
 
-                              // TODO: Array bounds checking here?
+                // TODO: Array bounds checking here?
                 if (current >= end)
                 {
                     //... Shit the bed
@@ -60,7 +61,7 @@ namespace SuperFastPrint
         }
 
         template <typename Device, typename Integer,
-            typename = std::enable_if_t<std::is_integral<Integer>::value> >
+            typename = std::enable_if<std::is_integral<Integer>::value>::type >
             inline void PrintSingle(Device& dev, Integer i, typename std::enable_if
                 <std::is_unsigned<Integer>::value>::type* = 0,
                 typename std::enable_if<(sizeof(Integer) > 4)>::type* = 0)
@@ -97,7 +98,7 @@ namespace SuperFastPrint
         }
 
         template <typename Device, typename Integer,
-            typename = std::enable_if_t<std::is_integral<Integer>::value> >
+            typename = std::enable_if<std::is_integral<Integer>::value>::type >
             inline void PrintSingle(Device& dev, Integer in, typename std::enable_if
                 <std::is_signed<Integer>::value>::type* = 0,
                 typename std::enable_if<(sizeof(Integer) > 4)>::type* = 0)
@@ -137,7 +138,7 @@ namespace SuperFastPrint
         }
 
         template <typename Device, typename Integer,
-            typename = std::enable_if_t<std::is_integral<Integer>::value> >
+            typename = std::enable_if<std::is_integral<Integer>::value>::type >
             inline void PrintSingle(Device& dev, Integer i, typename std::enable_if
                 <std::is_unsigned<Integer>::value>::type* = 0,
                 typename std::enable_if<(sizeof(Integer) <= 4)>::type* = 0)
@@ -157,7 +158,7 @@ namespace SuperFastPrint
         }
 
         template <typename Device, typename Integer,
-            typename = std::enable_if_t<std::is_integral<Integer>::value> >
+            typename = std::enable_if<std::is_integral<Integer>::value>::type >
             inline void PrintSingle(Device& dev, Integer i, typename std::enable_if
                 <std::is_signed<Integer>::value>::type* = 0,
                 typename std::enable_if<(sizeof(Integer) <= 4)>::type* = 0)
