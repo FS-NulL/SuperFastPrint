@@ -16,4 +16,4 @@ Usage:
 # Warning!
 When writing to character buffers there is not proper bounds checking, arrays can be overrun (I said it was fast). 
 
-Currently the array bounds are checked at the end of a print function, however this is already too late, if it has over run std::terminate is executed.
+Currently the array bounds are checked at the end of a print function, potentialy after the overrun has occured, if it has over run std::terminate is executed. This functionality can be changed by modifying the PrintToString destructor.
