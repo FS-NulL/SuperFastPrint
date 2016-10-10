@@ -10,7 +10,7 @@ Usage:
 
 
     char buffer[100];
-    Print(stderr, "Task: ", 54, "ms\n");
+    Print(buffer, "Task: ", 54, "ms\n");
 
 
 # Warning!
